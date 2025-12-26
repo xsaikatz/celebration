@@ -1,294 +1,443 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Happy Birthday San!</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@700&display=swap" rel="stylesheet">
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      height: 100vh;
-      overflow: hidden;
-      background: #0a001f;
-      font-family: 'Lexend', sans-serif;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday San!</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    .aurora-bg {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      opacity: 0.6;
-      animation: auroraMove 20s ease infinite;
-    }
-    .aurora-bg::before, .aurora-bg::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: inherit;
-      filter: blur(80px);
-      opacity: 0.8;
-    }
-    .aurora-bg::before { animation: auroraMove 15s ease infinite reverse; }
-    .aurora-bg::after { animation: auroraMove 25s ease infinite; }
-    @keyframes auroraMove {
-      0%, 100% { transform: translateY(0) scale(1); }
-      50% { transform: translateY(-50px) scale(1.1); }
-    }
+        body {
+            font-family: 'Lexend', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
 
-    h1 {
-      font-size: 5rem;
-      margin: 0 0 40px;
-      position: relative;
-      background: linear-gradient(90deg, #ff006e, #3a86ff, #8f00ff, #00f5ff);
-      background-size: 400%;
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      animation: auroraText 8s linear infinite;
-      text-shadow: 0 0 30px rgba(255,255,255,0.5);
-    }
-    @keyframes auroraText {
-      0% { background-position: 0%; }
-      100% { background-position: 400%; }
-    }
+        .container {
+            text-align: center;
+            padding: 20px;
+            position: relative;
+            z-index: 10;
+        }
 
-    .lights {
-      position: absolute;
-      top: 20px;
-      width: 100%;
-      height: 60px;
-      text-align: center;
-      white-space: nowrap;
-      overflow: hidden;
-    }
-    .lights li {
-      display: inline-block;
-      width: 15px;
-      height: 30px;
-      margin: 0 25px;
-      border-radius: 50%;
-      background: #ff006e;
-      box-shadow: 0 0 15px #ff006e;
-      animation: twinkle 2s infinite alternate;
-    }
-    .lights li:nth-child(2n) { background: #3a86ff; box-shadow: 0 0 15px #3a86ff; animation-delay: 0.5s; }
-    .lights li:nth-child(3n) { background: #ffd60a; box-shadow: 0 0 15px #ffd60a; animation-delay: 1s; }
-    @keyframes twinkle {
-      0% { opacity: 0.4; transform: scale(0.8); }
-      100% { opacity: 1; transform: scale(1); }
-    }
+        .title {
+            font-size: clamp(2rem, 8vw, 5rem);
+            font-weight: 700;
+            margin: 40px 0 60px;
+            position: relative;
+            background: linear-gradient(45deg, #ff00ff, #00ffff, #ff00ff, #00ffff);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: aurora 3s ease infinite;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+        }
 
-    .balloon {
-      position: absolute;
-      bottom: -100px;
-      width: 60px;
-      height: 80px;
-      background: hsl(0, 100%, 70%);
-      border-radius: 80% 80% 80% 80% / 60% 60% 80% 80%;
-      animation: floatUp 15s linear forwards;
-    }
-    .balloon::before {
-      content: '';
-      position: absolute;
-      bottom: -20px;
-      left: 28px;
-      width: 4px;
-      height: 100px;
-      background: #fff;
-    }
-    @keyframes floatUp {
-      to { transform: translateY(-120vh) rotate(20deg); opacity: 0; }
-    }
+        @keyframes aurora {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
 
-    .snowflake {
-      position: absolute;
-      top: -10px;
-      color: #fff;
-      font-size: 1.5em;
-      animation: fall linear infinite;
-      opacity: 0.8;
-    }
-    @keyframes fall {
-      to { transform: translateY(100vh); }
-    }
+        .balloon {
+            position: fixed;
+            width: 50px;
+            height: 60px;
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            animation: float 6s ease-in-out infinite;
+            z-index: 5;
+        }
 
-    .cake-container {
-      position: relative;
-      margin: 40px 0;
-    }
-    .cake {
-      width: 300px;
-      height: 200px;
-      background: #d2691e;
-      border-radius: 20px;
-      position: relative;
-      box-shadow: 0 10px 20px rgba(0,0,0,0.5);
-    }
-    .cake::before {
-      content: '';
-      position: absolute;
-      top: -40px;
-      left: 20px;
-      width: 260px;
-      height: 100px;
-      background: #ff69b4;
-      border-radius: 20px;
-    }
-    .candles {
-      position: absolute;
-      top: -60px;
-      width: 100%;
-      display: flex;
-      justify-content: center;
-      gap: 12px;
-      flex-wrap: wrap;
-    }
-    .candle {
-      width: 12px;
-      height: 50px;
-      background: #fff;
-      position: relative;
-    }
-    .flame {
-      position: absolute;
-      top: -20px;
-      left: 2px;
-      width: 8px;
-      height: 20px;
-      background: radial-gradient(#ff8c00, #ff4500);
-      border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
-      animation: flicker 0.8s infinite alternate;
-      opacity: 1;
-      transition: opacity 1s;
-    }
-    .age-candle {
-      position: absolute;
-      top: -100px;
-      left: 50%;
-      transform: translateX(-50%);
-      font-size: 4rem;
-      color: #ffd700;
-      text-shadow: 0 0 20px #ff4500;
-    }
-    @keyframes flicker {
-      0% { transform: scaleY(1) skewX(0); opacity: 0.9; }
-      100% { transform: scaleY(1.3) skewX(5deg); opacity: 1; }
-    }
+        .balloon::before {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 80px;
+            background: rgba(255, 255, 255, 0.3);
+        }
 
-    button {
-      padding: 15px 30px;
-      font-size: 1.5rem;
-      margin: 20px;
-      background: #ff006e;
-      color: white;
-      border: none;
-      border-radius: 50px;
-      cursor: pointer;
-      box-shadow: 0 10px 20px rgba(0,0,0,0.3);
-      transition: transform 0.2s;
-    }
-    button:hover { transform: scale(1.1); }
+        .balloon::after {
+            content: '▼';
+            position: absolute;
+            bottom: -18px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 8px;
+            color: inherit;
+        }
 
-    .confetti {
-      position: absolute;
-      width: 10px;
-      height: 10px;
-      background: #ff006e;
-      opacity: 0;
-    }
-  </style>
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(-5deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
+
+        .lights {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 80px;
+            display: flex;
+            justify-content: space-around;
+            z-index: 20;
+            padding: 10px;
+        }
+
+        .light {
+            width: 10px;
+            height: 15px;
+            border-radius: 50%;
+            animation: twinkle 1.5s ease-in-out infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.3; transform: scale(0.8); }
+        }
+
+        .snowflake {
+            position: fixed;
+            top: -10px;
+            color: white;
+            font-size: 1em;
+            opacity: 0.8;
+            animation: falling linear infinite;
+            z-index: 1;
+        }
+
+        @keyframes falling {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+            }
+        }
+
+        .cake-container {
+            margin: 60px auto;
+            position: relative;
+            max-width: 400px;
+        }
+
+        .cake {
+            width: 280px;
+            height: 200px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .layer {
+            width: 100%;
+            height: 60px;
+            background: linear-gradient(to bottom, #ff69b4, #ff1493);
+            border-radius: 10px;
+            position: absolute;
+            border: 3px solid #ff1493;
+        }
+
+        .layer-1 { bottom: 0; width: 280px; left: 0; }
+        .layer-2 { bottom: 58px; width: 240px; left: 20px; background: linear-gradient(to bottom, #ffb6c1, #ff69b4); border-color: #ff69b4; }
+        .layer-3 { bottom: 116px; width: 200px; left: 40px; background: linear-gradient(to bottom, #ffc0cb, #ffb6c1); border-color: #ffb6c1; }
+
+        .frosting {
+            position: absolute;
+            width: 100%;
+            height: 10px;
+            background: white;
+            border-radius: 50%;
+            top: -5px;
+        }
+
+        .candles-holder {
+            position: absolute;
+            top: -80px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .candle {
+            width: 8px;
+            height: 50px;
+            background: linear-gradient(to bottom, #fff, #f0f0f0);
+            border-radius: 3px;
+            position: relative;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .candle-top {
+            position: absolute;
+            top: -3px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 10px;
+            height: 6px;
+            background: #333;
+            border-radius: 50% 50% 0 0;
+        }
+
+        .flame {
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 10px;
+            height: 20px;
+            background: radial-gradient(ellipse at center, #fff 0%, #ffeb3b 20%, #ff9800 50%, #ff5722 100%);
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            animation: flicker 0.3s ease-in-out infinite alternate;
+            box-shadow: 0 0 10px #ff9800, 0 0 20px #ff5722;
+        }
+
+        .flame.out {
+            animation: none;
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+
+        @keyframes flicker {
+            0% { transform: translateX(-50%) scaleY(1); }
+            100% { transform: translateX(-50%) scaleY(1.1); }
+        }
+
+        .age-candle {
+            position: absolute;
+            top: -90px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 8px;
+        }
+
+        .age-digit {
+            width: 20px;
+            height: 60px;
+            background: linear-gradient(145deg, #ffd700, #ffed4e);
+            border-radius: 5px;
+            position: relative;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            font-size: 32px;
+            font-weight: bold;
+            color: #ff1493;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .age-digit .flame {
+            top: -25px;
+        }
+
+        button {
+            margin-top: 30px;
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            font-family: 'Lexend', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            font-weight: 600;
+        }
+
+        button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+        }
+
+        button:active {
+            transform: translateY(-1px);
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background: #f0f;
+            position: fixed;
+            animation: confetti-fall 3s linear;
+            z-index: 100;
+        }
+
+        @keyframes confetti-fall {
+            to {
+                transform: translateY(100vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .cake {
+                width: 240px;
+                transform: scale(0.85);
+            }
+            
+            .layer-1 { width: 240px; }
+            .layer-2 { width: 200px; left: 20px; }
+            .layer-3 { width: 160px; left: 40px; }
+            
+            button {
+                padding: 12px 30px;
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .cake {
+                transform: scale(0.7);
+            }
+            
+            .title {
+                margin: 20px 0 40px;
+            }
+        }
+    </style>
 </head>
 <body>
-  <div class="aurora-bg"></div>
-
-  <ul class="lights">
-    <li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li>
-    <li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li>
-  </ul>
-
-  <h1>Happy Birthday San!</h1>
-
-  <div class="cake-container">
-    <div class="cake"></div>
-    <div class="age-candle">15</div>
-    <div class="candles" id="candles">
+    <div class="lights"></div>
+    
+    <div class="container">
+        <h1 class="title">Happy Birthday San!</h1>
+        
+        <div class="cake-container">
+            <div class="cake">
+                <div class="layer layer-3">
+                    <div class="frosting"></div>
+                </div>
+                <div class="layer layer-2">
+                    <div class="frosting"></div>
+                </div>
+                <div class="layer layer-1">
+                    <div class="frosting"></div>
+                    <div class="age-candle">
+                        <div class="age-digit">
+                            1
+                            <div class="flame"></div>
+                        </div>
+                        <div class="age-digit">
+                            5
+                            <div class="flame"></div>
+                        </div>
+                    </div>
+                    <div class="candles-holder">
+                        <div class="candle">
+                            <div class="candle-top"></div>
+                            <div class="flame"></div>
+                        </div>
+                        <div class="candle">
+                            <div class="candle-top"></div>
+                            <div class="flame"></div>
+                        </div>
+                        <div class="candle">
+                            <div class="candle-top"></div>
+                            <div class="flame"></div>
+                        </div>
+                        <div class="candle">
+                            <div class="candle-top"></div>
+                            <div class="flame"></div>
+                        </div>
+                        <div class="candle">
+                            <div class="candle-top"></div>
+                            <div class="flame"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <button id="blowBtn" onclick="blowCandles()">Extinguish the Candles!</button>
+        <button id="giftBtn" class="hidden" onclick="openGift()">Get Gifts from Saikat!</button>
     </div>
-  </div>
 
-  <button id="extinguish">Extinguish the Candles!</button>
-  <button id="gifts">Take Gifts from Saikat!</button>
+    <script>
+        const balloonColors = ['#ff6b6b', '#4ecdc4', '#45b7d1', '#f9ca24', '#6c5ce7', '#a29bfe'];
+        for (let i = 0; i < 12; i++) {
+            const balloon = document.createElement('div');
+            balloon.className = 'balloon';
+            balloon.style.left = Math.random() * 100 + '%';
+            balloon.style.top = Math.random() * 80 + '%';
+            balloon.style.background = balloonColors[Math.floor(Math.random() * balloonColors.length)];
+            balloon.style.animationDelay = Math.random() * 2 + 's';
+            balloon.style.animationDuration = (Math.random() * 3 + 4) + 's';
+            document.body.appendChild(balloon);
+        }
 
-  <audio id="song" src="https://xsaikatz.github.io/celebration/birthday/San15thSong.mp3"></audio>
+        const lightsContainer = document.querySelector('.lights');
+        const lightColors = ['#ff6b6b', '#4ecdc4', '#45b7d1', '#f9ca24', '#6c5ce7', '#ff69b4'];
+        for (let i = 0; i < 20; i++) {
+            const light = document.createElement('div');
+            light.className = 'light';
+            light.style.background = lightColors[i % lightColors.length];
+            light.style.animationDelay = (i * 0.1) + 's';
+            lightsContainer.appendChild(light);
+        }
 
-  <script>
-    const candles = document.getElementById('candles');
-    for (let i = 0; i < 15; i++) {
-      const c = document.createElement('div');
-      c.className = 'candle';
-      const f = document.createElement('div');
-      f.className = 'flame';
-      c.appendChild(f);
-      candles.appendChild(c);
-    }
+        function createSnowflake() {
+            const snowflake = document.createElement('div');
+            snowflake.className = 'snowflake';
+            snowflake.innerHTML = '❅';
+            snowflake.style.left = Math.random() * 100 + '%';
+            snowflake.style.animationDuration = (Math.random() * 3 + 5) + 's';
+            snowflake.style.fontSize = (Math.random() * 10 + 10) + 'px';
+            snowflake.style.animationDelay = Math.random() * 5 + 's';
+            document.body.appendChild(snowflake);
+            
+            setTimeout(() => snowflake.remove(), 8000);
+        }
 
-    function createBalloon() {
-      const b = document.createElement('div');
-      b.className = 'balloon';
-      b.style.left = Math.random() * 100 + 'vw';
-      b.style.background = `hsl(${Math.random()*360}, 100%, 70%)`;
-      b.style.animationDuration = (Math.random() * 10 + 10) + 's';
-      document.body.appendChild(b);
-      setTimeout(() => b.remove(), 25000);
-    }
-    setInterval(createBalloon, 800);
+        setInterval(createSnowflake, 300);
 
-    function createSnow() {
-      const s = document.createElement('div');
-      s.className = 'snowflake';
-      s.textContent = '❄';
-      s.style.left = Math.random() * 100 + 'vw';
-      s.style.fontSize = Math.random() * 1 + 1 + 'em';
-      s.style.animationDuration = Math.random() * 5 + 5 + 's';
-      document.body.appendChild(s);
-      setTimeout(() => s.remove(), 15000);
-    }
-    setInterval(createSnow, 300);
+        function blowCandles() {
+            const flames = document.querySelectorAll('.flame');
+            flames.forEach(flame => {
+                flame.classList.add('out');
+            });
 
-    function confettiExplosion() {
-      for (let i = 0; i < 200; i++) {
-        const c = document.createElement('div');
-        c.className = 'confetti';
-        c.style.left = Math.random() * 100 + 'vw';
-        c.style.top = Math.random() * 100 + 'vh';
-        c.style.background = `hsl(${Math.random()*360}, 100%, 50%)`;
-        c.style.transform = `rotate(${Math.random()*360}deg)`;
-        c.style.animation = `fall ${Math.random()*2 + 2}s linear forwards`;
-        document.body.appendChild(c);
-        setTimeout(() => c.remove(), 4000);
-      }
-    }
-    @keyframes fall {
-      to { transform: translateY(100vh) rotate(720deg); opacity: 0; }
-    }
+            for (let i = 0; i < 150; i++) {
+                setTimeout(() => {
+                    const confetti = document.createElement('div');
+                    confetti.className = 'confetti';
+                    confetti.style.left = Math.random() * 100 + '%';
+                    confetti.style.top = '0';
+                    const colors = ['#ff6b6b', '#4ecdc4', '#45b7d1', '#f9ca24', '#6c5ce7', '#feca57', '#ff9ff3'];
+                    confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+                    confetti.style.animationDelay = (Math.random() * 0.5) + 's';
+                    document.body.appendChild(confetti);
+                    
+                    setTimeout(() => confetti.remove(), 3000);
+                }, i * 10);
+            }
 
-    document.getElementById('extinguish').addEventListener('click', () => {
-      document.querySelectorAll('.flame').forEach(f => f.style.opacity = '0');
-      confettiExplosion();
-      document.getElementById('song').play();
-    });
+            const audio = new Audio('xsaikatz.github.io/celebration/birthday/san15thsong.mp3');
+            audio.play().catch(e => console.log('Audio play failed:', e));
 
-    document.getElementById('gifts').addEventListener('click', () => {
-      window.open('', '_blank');
-    });
-  </script>
+            document.getElementById('blowBtn').classList.add('hidden');
+            setTimeout(() => {
+                document.getElementById('giftBtn').classList.remove('hidden');
+            }, 1000);
+        }
+
+        function openGift() {
+            window.open('xsaikatz.github.io/celebration/birthday/san15thgifts.html', '_blank');
+        }
+    </script>
 </body>
 </html>
