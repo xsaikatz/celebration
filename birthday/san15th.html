@@ -16,7 +16,7 @@
 
         body {
             font-family: 'Lexend', sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #667eea 0%, #000000 100%);
             min-height: 100vh;
             overflow-x: hidden;
             position: relative;
@@ -34,13 +34,12 @@
             font-weight: 700;
             margin: 40px 0 60px;
             position: relative;
-            background: linear-gradient(45deg, #ff00ff, #00ffff, #ff00ff, #00ffff);
+            background: linear-gradient(45deg, #4400ff, #ef00ff, #ffc300, #00ffff);
             background-size: 300% 300%;
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
-            animation: aurora 3s ease infinite;
-            text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+            animation: aurora 2s ease infinite;
         }
 
         @keyframes aurora {
@@ -60,7 +59,7 @@
         .balloon::before {
             content: '';
             position: absolute;
-            bottom: -10px;
+            bottom: -85px;
             left: 50%;
             transform: translateX(-50%);
             width: 2px;
@@ -71,7 +70,7 @@
         .balloon::after {
             content: '▼';
             position: absolute;
-            bottom: -18px;
+            bottom: -7.1px;
             left: 50%;
             transform: translateX(-50%);
             font-size: 8px;
@@ -160,7 +159,7 @@
 
         .candles-holder {
             position: absolute;
-            top: -80px;
+            top: -163px;
             width: 100%;
             display: flex;
             justify-content: center;
@@ -213,7 +212,7 @@
 
         .age-candle {
             position: absolute;
-            top: -90px;
+            top: -57px;
             left: 50%;
             transform: translateX(-50%);
             display: flex;
@@ -244,14 +243,14 @@
             padding: 15px 40px;
             font-size: 1.2rem;
             font-family: 'Lexend', sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #000000 0%, #ff5200 100%);
             color: white;
             border: none;
             border-radius: 50px;
             cursor: pointer;
             transition: all 0.3s;
             box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-            font-weight: 600;
+            font-weight: 400;
         }
 
         button:hover {
@@ -436,7 +435,7 @@
         }
 
         function openGift() {
-            window.open('xsaikatz.github.io/celebration/birthday/san15thgifts.html', '_blank');
+            window.open('https://xsaikatz.github.io/celebration/birthday/san15thgifts.html', '_blank');
         }
     </script>
 </body>
