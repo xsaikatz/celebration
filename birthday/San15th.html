@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Happy Birthday San!</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      overflow: hidden;
+      background: #0a001f;
+      font-family: 'Lexend', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .aurora-bg {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      opacity: 0.6;
+      animation: auroraMove 20s ease infinite;
+    }
+    .aurora-bg::before, .aurora-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: inherit;
+      filter: blur(80px);
+      opacity: 0.8;
+    }
+    .aurora-bg::before { animation: auroraMove 15s ease infinite reverse; }
+    .aurora-bg::after { animation: auroraMove 25s ease infinite; }
+    @keyframes auroraMove {
+      0%, 100% { transform: translateY(0) scale(1); }
+      50% { transform: translateY(-50px) scale(1.1); }
+    }
+
+    h1 {
+      font-size: 5rem;
+      margin: 0 0 40px;
+      position: relative;
+      background: linear-gradient(90deg, #ff006e, #3a86ff, #8f00ff, #00f5ff);
+      background-size: 400%;
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      animation: auroraText 8s linear infinite;
+      text-shadow: 0 0 30px rgba(255,255,255,0.5);
+    }
+    @keyframes auroraText {
+      0% { background-position: 0%; }
+      100% { background-position: 400%; }
+    }
+
+    .lights {
+      position: absolute;
+      top: 20px;
+      width: 100%;
+      height: 60px;
+      text-align: center;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+    .lights li {
+      display: inline-block;
+      width: 15px;
+      height: 30px;
+      margin: 0 25px;
+      border-radius: 50%;
+      background: #ff006e;
+      box-shadow: 0 0 15px #ff006e;
+      animation: twinkle 2s infinite alternate;
+    }
+    .lights li:nth-child(2n) { background: #3a86ff; box-shadow: 0 0 15px #3a86ff; animation-delay: 0.5s; }
+    .lights li:nth-child(3n) { background: #ffd60a; box-shadow: 0 0 15px #ffd60a; animation-delay: 1s; }
+    @keyframes twinkle {
+      0% { opacity: 0.4; transform: scale(0.8); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+
+    .balloon {
+      position: absolute;
+      bottom: -100px;
+      width: 60px;
+      height: 80px;
+      background: hsl(0, 100%, 70%);
+      border-radius: 80% 80% 80% 80% / 60% 60% 80% 80%;
+      animation: floatUp 15s linear forwards;
+    }
+    .balloon::before {
+      content: '';
+      position: absolute;
+      bottom: -20px;
+      left: 28px;
+      width: 4px;
+      height: 100px;
+      background: #fff;
+    }
+    @keyframes floatUp {
+      to { transform: translateY(-120vh) rotate(20deg); opacity: 0; }
+    }
+
+    .snowflake {
+      position: absolute;
+      top: -10px;
+      color: #fff;
+      font-size: 1.5em;
+      animation: fall linear infinite;
+      opacity: 0.8;
+    }
+    @keyframes fall {
+      to { transform: translateY(100vh); }
+    }
+
+    .cake-container {
+      position: relative;
+      margin: 40px 0;
+    }
+    .cake {
+      width: 300px;
+      height: 200px;
+      background: #d2691e;
+      border-radius: 20px;
+      position: relative;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+    }
+    .cake::before {
+      content: '';
+      position: absolute;
+      top: -40px;
+      left: 20px;
+      width: 260px;
+      height: 100px;
+      background: #ff69b4;
+      border-radius: 20px;
+    }
+    .candles {
+      position: absolute;
+      top: -60px;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .candle {
+      width: 12px;
+      height: 50px;
+      background: #fff;
+      position: relative;
+    }
+    .flame {
+      position: absolute;
+      top: -20px;
+      left: 2px;
+      width: 8px;
+      height: 20px;
+      background: radial-gradient(#ff8c00, #ff4500);
+      border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+      animation: flicker 0.8s infinite alternate;
+      opacity: 1;
+      transition: opacity 1s;
+    }
+    .age-candle {
+      position: absolute;
+      top: -100px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 4rem;
+      color: #ffd700;
+      text-shadow: 0 0 20px #ff4500;
+    }
+    @keyframes flicker {
+      0% { transform: scaleY(1) skewX(0); opacity: 0.9; }
+      100% { transform: scaleY(1.3) skewX(5deg); opacity: 1; }
+    }
+
+    button {
+      padding: 15px 30px;
+      font-size: 1.5rem;
+      margin: 20px;
+      background: #ff006e;
+      color: white;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+      transition: transform 0.2s;
+    }
+    button:hover { transform: scale(1.1); }
+
+    .confetti {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background: #ff006e;
+      opacity: 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="aurora-bg"></div>
+
+  <ul class="lights">
+    <li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li>
+    <li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li>
+  </ul>
+
+  <h1>Happy Birthday San!</h1>
+
+  <div class="cake-container">
+    <div class="cake"></div>
+    <div class="age-candle">15</div>
+    <div class="candles" id="candles">
+    </div>
+  </div>
+
+  <button id="extinguish">Extinguish the Candles!</button>
+  <button id="gifts">Take Gifts from Saikat!</button>
+
+  <audio id="song" src="https://xsaikatz.github.io/celebration/birthday/San15thSong.mp3"></audio>
+
+  <script>
+    const candles = document.getElementById('candles');
+    for (let i = 0; i < 15; i++) {
+      const c = document.createElement('div');
+      c.className = 'candle';
+      const f = document.createElement('div');
+      f.className = 'flame';
+      c.appendChild(f);
+      candles.appendChild(c);
+    }
+
+    function createBalloon() {
+      const b = document.createElement('div');
+      b.className = 'balloon';
+      b.style.left = Math.random() * 100 + 'vw';
+      b.style.background = `hsl(${Math.random()*360}, 100%, 70%)`;
+      b.style.animationDuration = (Math.random() * 10 + 10) + 's';
+      document.body.appendChild(b);
+      setTimeout(() => b.remove(), 25000);
+    }
+    setInterval(createBalloon, 800);
+
+    function createSnow() {
+      const s = document.createElement('div');
+      s.className = 'snowflake';
+      s.textContent = '❄';
+      s.style.left = Math.random() * 100 + 'vw';
+      s.style.fontSize = Math.random() * 1 + 1 + 'em';
+      s.style.animationDuration = Math.random() * 5 + 5 + 's';
+      document.body.appendChild(s);
+      setTimeout(() => s.remove(), 15000);
+    }
+    setInterval(createSnow, 300);
+
+    function confettiExplosion() {
+      for (let i = 0; i < 200; i++) {
+        const c = document.createElement('div');
+        c.className = 'confetti';
+        c.style.left = Math.random() * 100 + 'vw';
+        c.style.top = Math.random() * 100 + 'vh';
+        c.style.background = `hsl(${Math.random()*360}, 100%, 50%)`;
+        c.style.transform = `rotate(${Math.random()*360}deg)`;
+        c.style.animation = `fall ${Math.random()*2 + 2}s linear forwards`;
+        document.body.appendChild(c);
+        setTimeout(() => c.remove(), 4000);
+      }
+    }
+    @keyframes fall {
+      to { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+    }
+
+    document.getElementById('extinguish').addEventListener('click', () => {
+      document.querySelectorAll('.flame').forEach(f => f.style.opacity = '0');
+      confettiExplosion();
+      document.getElementById('song').play();
+    });
+
+    document.getElementById('gifts').addEventListener('click', () => {
+      window.open('', '_blank');
+    });
+  </script>
+</body>
+</html>
